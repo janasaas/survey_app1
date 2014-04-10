@@ -1,0 +1,8 @@
+<% provide(:title, "List") %>
+<h2>Welcome: <%= @user[:email]%></h2>  
+<h5><%= link_to "create a new survey!", new_survey_path %></h5><br>
+<h4>Your Previous Surveys:</h4>
+<% @surveys.each do |survey| %><br>
+  <%= link_to survey[:name], survey_path(:id => survey[:id] )  %>
+<% end %>
+

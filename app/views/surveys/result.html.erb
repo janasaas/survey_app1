@@ -1,0 +1,7 @@
+<% provide(:title, "Result") %>
+<h1>Result page</h1>
+<%= javascript_include_tag "highcharts.js", "chartkick" %>
+<% @questions.each do |question| %>
+  <li><%= h question.content %></li>
+  <%= pie_chart question.qresponses.group(:answer).count%>
+<% end %>
