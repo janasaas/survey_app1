@@ -9,6 +9,9 @@ SurveyApp1::Application.routes.draw do
   resources :surveys, only: [:list, :new, :create, :show, :edit, :update, :destroy]
   get '/surveys/:id/result' => 'surveys#result', as: :result_survey  
   get '/settings/' => 'home#settings'
+  get '/help' => 'home#help'
+  get '/about' => 'home#about'
+  get '/contact' => 'home#contact'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

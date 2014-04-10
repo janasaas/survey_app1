@@ -1,0 +1,117 @@
+<% provide(:title, 'Help') %>
+<h1>Help</h1>
+<h3>Authentication via HTTP header</h3> 
+  <blockquote><p><pre>
+X-User-Email:abc@example.com
+X-User-Token:<copy paste from your Accounts --> Settings tab >
+  </pre></p></blockquote>
+  <p>If there is any mistake in the above details, then there will be the following json error</p> 
+  <blockquote><p><pre>
+{"error":"You need to sign in or sign up before continuing."}
+ </pre></p></blockquote>
+ 
+  <h3>API</h3>
+<ol>
+  <li><p>Getting list of surveys.</p>
+  <blockquote><p><pre>
+GET /v1/surveys/
+ </pre></p></blockquote> 
+   <p>Example Request:</p> 
+  <blockquote><p><pre>
+curl -H "X-User-Email:janarthanan.natarajan@gmail.com" -H "X-User-Token:Dkb-JRkdQYjRdoZcEdCS"  http://datadelve-survey.herokuapp.com/v1/surveys
+</pre></p></blockquote> 
+   <p>Example JSON Response:</p>
+<blockquote><p> <pre>
+{"surveys":
+            [
+             {"survey":{"id":1,"name":"politics"}},
+             {"survey":{"id":2,"name":"sports"}}
+            ]
+}</pre>
+</p></blockquote> 
+</li>
+ <li><p>Getting questions of a survey.</p>
+   <blockquote><p><pre>GET /v1/surveys/<id></pre></p></blockquote>
+    (where id means the survey id)
+  <p>Example Request:</p>
+   <blockquote><p><pre>
+curl -H "X-User-Email:janarthanan.natarajan@gmail.com" -H "X-User-Token:zDPic3s2mkowyfZAiqD4" http://datadelve-survey.herokuapp.com/v1/surveys/1
+</pre></p></blockquote>
+  <p>Example JSON Response:</p>
+<blockquote><p><pre>
+{"survey":
+         {"id":1,
+          "name":"politics",
+          "questions":
+                      [{"question":{"question_id":1,
+                                    "content":"Fav leader?",
+                                    "answers":
+                                              [{"answer":{"content":"Modi"}},
+                                               {"answer":{"content":"Rahul"}},
+                                               {"answer":{"content":"Arvind"}},
+                                               {"answer":{"content":"None"}}
+                                              ]
+                                   }
+                       },
+                       {"question":{"question_id":2,
+                                    "content":"Will you vote this year?",
+                                    "answers":
+                                              [{"answer":{"content":"Yes"}},
+                                               {"answer":{"content":"No"}}
+                                              ]
+                                   }
+                       },
+                       {"question":{"question_id":3,
+                                    "content":"Fav party?",
+                                    "answers":
+                                              [{"answer":{"content":"Congress"}},
+                                               {"answer":{"content":"BJP"}},
+                                               {"answer":{"content":"AAP"}},
+                                               {"answer":{"content":"None"}}
+                                              ]
+                                   }
+                       }
+                      ]
+         }
+}</pre>
+</p></blockquote>
+
+<li><p>Posting answers of a survey.</p>
+  <blockquote><p><pre>POST /v1/surveys/<id></pre></p></blockquote>
+    (where id means the survey id)
+  <p>Example Request:</p>
+  <blockquote><p><pre>
+curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -H "X-User-Email:janarthanan.natarajan@gmail.com" -H "X-User-Token:zDPic3s2mkowyfZAiqD4" -d 'JSON data' http://datadelve-survey.herokuapp.com/v1/surveys/1
+</pre></p></blockquote>
+<p>The JSON data in the above CURL request should be in the following format:</p>
+<blockquote><p><pre>
+{ "response" : 
+              { "survey_id" : 1, 
+                "agent" : { "phone" : 1234567891 }, 
+                "surveyee" : { "first_name" : "Jana" , "last_name" : "Nat", "phone" : 9731720119 },
+                "qresponses_attributes" : 
+                                          { "1" : {"question_id" : 1, "answer" : "Rahul"} ,
+                                            "2" : {"question_id" : 2, "answer" : "Yes"} ,  
+                                            "3" : {"question_id" : 3, "answer" : "Congress"} 
+                                          }
+              }
+}
+</pre></p></blockquote>
+  <p>Example JSON Response:</p>
+  
+  There are two possible responses:
+    <p>Success</p>
+<blockquote><p><pre>
+{"http_status_code":"200","success":"Survey response successfully updated"}
+</pre></p></blockquote>
+    Fails
+<blockquote><p><pre>
+{"http_status_code":"422","error":["Survey has already been taken"]}
+</pre></p></blockquote>
+</ol>
+
+
+  
+
+</p>
+
