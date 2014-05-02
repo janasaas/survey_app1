@@ -1,4 +1,3 @@
-<script type="text/javascript">
 // Create a queue, but don't obliterate an existing one!
 window.analytics = window.analytics || [];
 
@@ -63,5 +62,3 @@ window.analytics.page();
 $(document).on('ready page:change', function() {
   analytics.page();
 })
-
-</script>
