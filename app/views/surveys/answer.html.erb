@@ -1,0 +1,17 @@
+<% provide(:title, "Answer") %>
+<h1>Answer page</h1>
+<%=form_for(:surveys, url:surveys_answer_path) do |f|%>
+<ol>
+  <% for question in @survey.questions %>
+  <li><%= h question.content %></li>
+  <ul>
+    <% for answer in question.answers %>  
+     <input type="checkbox" name="answer" value="option"><%= h answer.content %><br>
+    <% end %>
+  </ul>
+  <% end %>
+  <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
+</ol>
+<% end %>
+
+

@@ -1,0 +1,24 @@
+<% provide(:title, "Response") %>
+<h1>Response page</h1>
+<%=nested_form_for @response do |f|%>
+<%=f.hidden_field(:survey_id, :value => @survey_id) %>
+<%=f.hidden_field(:agent_id, :value => @agent_id) %>
+<%=f.hidden_field(:surveyee_id, :value => @surveyee_id) %>
+<ol>
+  <% for question in @survey.questions %>
+  <li><%= h question.content %></li>
+  <ul>
+      <%= f.fields_for :qresponses do |builder| %>
+        <%= builder.hidden_field(:question_id, :value => question.id) %>
+        <% for answer in question.answers %>   
+          <%= builder.radio_button(:answer, answer.content)%>
+          <%= builder.label(answer.content) %>
+        <% end %>
+      <% end %>
+  </ul>
+  <% end %>
+  <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
+</ol>
+<% end %>
+
+

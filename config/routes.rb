@@ -12,6 +12,10 @@ SurveyApp1::Application.routes.draw do
   get '/help' => 'home#help'
   get '/about' => 'home#about'
   get '/contact' => 'home#contact'
+  resources :agents, only: [:new, :create]
+  resources :surveyees, only: [:new, :create]
+  resources :responses, only: [:new, :create]
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -26,7 +26,11 @@ def show
 end
 
 def edit
-  @survey = Survey.find(params[:id]) 
+  @survey = Survey.find(params[:id])
+  if @survey.responses.count != 0
+    flash.now[:error] = "Cannot edit this survey. There are one or more responses submitted for this survey."
+    render "show"
+  end
 end
 
 def update
@@ -38,9 +42,19 @@ end
 
 def destroy
   @survey = Survey.find(params[:id])
-  if @survey.destroy
-    redirect_to :action => 'list'
+  if @survey.responses.count != 0
+    flash.now[:error] = "Cannot destroy this survey. There are one or more responses submitted for this survey."
+    render "show"
+  else
+    if @survey.destroy
+      redirect_to :action => 'list'
+    end
   end
+end
+
+def answer
+   @survey = Survey.find(params[:id])
+   @questions = @survey.questions 
 end
 
 def result

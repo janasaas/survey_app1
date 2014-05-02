@@ -1,0 +1,22 @@
+<% provide(:title, "Agent") %>
+<h1>Details of Agent</h1>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(:agent, url: agents_path, :method => :post) do |f| %>
+
+      <%= f.label :phone, "Phone*", class: 'mandatory'%>
+      <%= f.phone_field :phone, :required => true %><br>
+
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name %>
+      
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name %><br>
+      
+      
+   
+      <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
+

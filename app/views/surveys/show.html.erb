@@ -20,6 +20,7 @@
 <p>
 <%= link_to "Edit", edit_survey_path(@survey) %> |
 <%= link_to "Destroy", @survey, :confirm => 'Are you sure?', :method => :delete %>|
+<%= link_to "Submit Answer",   new_agent_path(:survey_id => @survey.id) %> |
 <%= link_to "Result", result_survey_path %>
 </p>
 

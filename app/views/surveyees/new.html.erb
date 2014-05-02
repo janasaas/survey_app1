@@ -1,0 +1,80 @@
+<% provide(:title, "Surveyee") %>
+<h1>Details of Surveyee</h1>
+<%= form_for(:surveyee, url: surveyees_path, :method => :post) do |f| %>
+<div class="row">
+  <div class="span4 offset2"> 
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+  </div>   
+  <div class="span4">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+  </div>
+</div>
+<div class="row">
+  <div class="span4 offset2"> 
+    <%= f.label :phone, "Phone*", class: 'mandatory' %>
+    <%= f.phone_field :phone, :required => true %>
+  </div>
+  <div class="span4">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+</div>
+<div class="row">
+  <div class="span4 offset2"> 
+    <%= f.label :age %>
+    <%= f.text_field :age %>
+  </div>
+  <div class="span4">
+    <%= f.label :sex %>
+    <%= f.text_field :sex%>
+  </div>
+</div>
+<div class="row">
+  <div class="span4 offset2">
+    <%= f.label :address_1 %>
+    <%= f.text_field :address_1 %>
+  </div>
+  <div class="span4">
+    <%= f.label :address_2 %>
+    <%= f.text_field :address_2 %>
+  </div>
+</div>
+<div class="row">
+  <div class="span4 offset2">
+    <%= f.label :city %>
+    <%= f.text_field :city %>
+  </div>
+  <div class="span4 ">
+    <%= f.label :state %>
+    <%= f.text_field :state %>
+  </div>
+</div>
+<div class="row">
+  <div class="span4 offset2">
+    <%= f.label :country %>
+    <%= f.text_field :country %>
+  </div>
+  <div class="span4 ">
+    <%= f.label :zip_code %>
+    <%= f.text_field :zip_code %>
+  </div>
+</div>
+<div class="row">
+  <div class="span4 offset2">
+    <%= f.label :latitude %>
+    <%= f.text_field :latitude %>
+  </div>
+  <div class="span4 ">
+    <%= f.label :longitude %>
+    <%= f.text_field :longitude %>
+  </div>
+</div>  
+<div class="row">
+  <div class="span8 offset6">     
+    <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
+  </div>
+</div> 
+<% end %> 
+
